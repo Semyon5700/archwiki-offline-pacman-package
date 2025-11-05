@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Arch Wiki Offline
+Comment=Offline ArchWiki documentation browser
+Exec=archwiki-offline
+Icon=help-browser
+Terminal=false
+Categories=System;Documentation;
+Keywords=archwiki;documentation;offline;
