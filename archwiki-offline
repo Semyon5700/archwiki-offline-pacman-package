@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
 
-# Nikhil Singh <nik.singh710@gmail.com>
-# This will make searching archwikki easy.
+# ArchWiki Offline Access Script
+# Original Author: Nikhil Singh <nik.singh710@gmail.com>
+# Package Maintainer: Semyon5700
+# This script provides offline access to ArchWiki documentation
 
 # Variables
 _menu_cmd="rofi -dmenu -i -p ArchWiki "
 _opener="xdg-open"
 _disown=false
-_lang="en" # for future possibilities to have different lang support
+_lang="en"
 
 check() {
 	command -v "$1" >/dev/null 2>&1
@@ -28,8 +30,14 @@ main() {
 		exit 1
 	}
 
-	wikidir="/usr/share/doc/arch-wiki/html/en"
-	wikidocs="$(find ${wikidir} -iname "*.html")"
+	wikidir="/usr/share/doc/arch-wiki/html/${_lang}"
+	
+	# If language directory doesn't exist, use English
+	if [ ! -d "$wikidir" ]; then
+		wikidir="/usr/share/doc/arch-wiki/html/en"
+	fi
+	
+	wikidocs="$(find "${wikidir}" -iname "*.html")"
 
 	choice=$(echo "$wikidocs" | sed -e "s|${wikidir}/||g" | sed -e "s|.html||g" | sed 's/_/ /g' | sort -n | eval "$_menu_cmd")
 	[ -z "$choice" ] && exit 0
@@ -59,6 +67,10 @@ help() {
                                    'archwki -o w3m'
         This program will be used to open entry.
         default is (${_opener[@]})
+    -l: Sets the language. e.g 'archwiki -l es'
+                              'archwiki -l ru'
+        This will set the language for wiki documentation.
+        default is (${_lang})
 
     * Note make sure to use -h as last flag to get a preview of your choices in the help menu
 EOF
@@ -80,6 +92,10 @@ getArgs() {
 			;;
 		-o)
 			_opener=("$2")
+			shift
+			;;
+		-l)
+			_lang=("$2")
 			shift
 			;;
 		*)
