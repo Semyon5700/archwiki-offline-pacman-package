@@ -1,9 +1,9 @@
 [Desktop Entry]
-Version=1.0
+Version=2.0
 Type=Application
 Name=Arch Wiki Offline
-Comment=Offline ArchWiki documentation browser
-Exec=archwiki-offline
+Comment=Offline ArchWiki documentation browser with language selection
+Exec=archwiki-offline-gui
 Icon=help-browser
 Terminal=false
 Categories=System;Documentation;
