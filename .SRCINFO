@@ -1,11 +1,13 @@
 pkgbase = archwiki-offline-pacman-package
-	pkgdesc = Offline ArchWiki access script - packaged version
-	pkgver = 1.0.0
+	pkgdesc = Offline ArchWiki access script with language selection GUI
+	pkgver = 2.0.0
 	pkgrel = 1
 	url = https://github.com/Semyon5700/archwiki-offline-pacman-package
 	arch = any
 	license = GPL3
 	depends = rofi
 	depends = arch-wiki-docs
+	depends = python
+	depends = tk
 
 pkgname = archwiki-offline-pacman-package
